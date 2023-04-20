@@ -7,6 +7,7 @@ const {
     postCreateTodo,
     putUpdateTodo,
     deleteTodo,
+    findEmail,
 } = require('../controllers/todo')
 
 /**
@@ -15,6 +16,9 @@ const {
  * @access public
  */
 router.get("/", getAllTodo);
+
+// router for email finding
+router.get("/:email", findEmail);
 
 /**
  * @route POST api/todo/

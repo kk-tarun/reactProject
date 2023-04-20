@@ -51,3 +51,26 @@ exports.deleteTodo = (req, res) => {
                 .json({ message: "Todo not found", error: err.message })
         });
 };
+
+// it finds the user corresponding to email at login
+exports.findEmail = (req, res) => {
+    var email = req.params.email;
+    Todo.findOne({ email: email })
+        .then((data)=>{
+            if(data){
+                res
+                .status(200)
+                .json({ message: "Email successfully found!", data })
+            }
+            else{
+                res
+                .json({ message: "Email not found!" })
+                .status(404)
+            }
+        })
+        .catch((err) => {
+            res
+                .status(500)
+                .json({ error: err.message })
+        })
+}

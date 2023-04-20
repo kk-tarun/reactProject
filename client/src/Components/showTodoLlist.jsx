@@ -3,22 +3,21 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { UpdateTodo } from "./updateTodo";
+import { toast } from "react-toastify";
 
 function TodoCard({ data, handdleEdit, handleDelete }) {
   const { _id, email, password, username, isLoggedIn, todos, createdAt, updatedAt } = data;
 
   return (
     <section>
-      {_id}
-      {email}
-      {password}
-      {username}
+      Email = {email}
       <br />
-      wefrg
-      {isLoggedIn}
+      Password = {password}
       <br />
-      {createdAt}
-      {updatedAt}
+      Username = {username}
+      <br />
+      is isLoggedIn = {isLoggedIn}
+      <br />
       {/* {todos} */}
       {todos.map((data) => (
         <li key={data._id}>
@@ -42,22 +41,32 @@ function TodoCard({ data, handdleEdit, handleDelete }) {
 }
 
 export const ShowTodoLlist = () => {
-  const [todo, setTodo] = useState([]);
+  const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
   const [id, setId] = useState("");
   const [update, setUpdate] = useState(false);
-
+  const [user, setUser] = useState();
   useEffect(() => {
+    var localData = JSON.parse(localStorage.getItem('currentUser'));
+    // setUser(localData);
+    setUser(localData);
+    console.log(localData);
+    console.log(localData.todos);
+    console.log(user)
+
+    if(!localData){
+      window.location.href = "/";
+    }
     axios
       .get("http://localhost:8000/api/todo")
       .then((res) => {
         // console.log(res.data);
-        setTodo(res.data);
+        setData(res.data);
       })
       .catch((err) => {
         console.log(err.message);
       });
-  }, [update]);
+  }, []);
 
   function handleEdit(e) {
     setId(e.target.name);
@@ -73,7 +82,7 @@ export const ShowTodoLlist = () => {
     console.log(e.target.name);
     axios.delete(`http://localhost:8000/api/todo/${e.target.name}`);
 
-    setTodo((data) => {
+    setData((data) => {
       console.log(data.todos)
       return data.todos.filter((todo) => todo._id !== e.target.name);
     });
@@ -92,8 +101,9 @@ export const ShowTodoLlist = () => {
       <section className="contents">
         <h1>TODO</h1>
         <ul className="list-container">
-          {todo.map((data) => (  
-              <TodoCard
+          {data.map((data) => ( 
+              data.isLoggedIn &&
+                <TodoCard
                 key={data._id}
                 data={data}
                 handleEdit={handleEdit}

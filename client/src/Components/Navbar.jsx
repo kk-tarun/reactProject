@@ -42,27 +42,16 @@ const NavLinkMobile = ({ link }) => {
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const { user, setUser, setTodos } = useState();
-    const navigate = useNavigate();
+    const [user, setUser]= useState(null);
 
     const logout = () => {
-        localStorage.removeItem("token");
-        navigate("/", { replace: true });
+        localStorage.removeItem("currentUser");
         setUser(null);
-        setTodos([]);
-        // toast.success("Logged out!");
     };
 
     useEffect(() => {
-        const onWindowResize = () => {
-            if (window.innerWidth >= 670) {
-                setIsOpen(false);
-            }
-        };
-
-        window.addEventListener("resize", onWindowResize);
-
-        return () => window.removeEventListener("resize", onWindowResize);
+        var localData = JSON.parse(localStorage.getItem('currentUser'));
+        setUser(localData);
     }, []);
 
     const toggleMenu = () => {
@@ -77,14 +66,14 @@ const Navbar = () => {
             <div className="flex w-full items-center justify-between">
                 <Link
                     to="/"
-                    className="mr-8 flex-shrink-0 text-xl font-semibold tracking-wider"
+                    className="flex-shrink-0 text-xl font-semibold tracking-wider"
                 >
                     TimeTrackr
                 </Link>
                 {/* Desktop nav */}
                 <div className="hidden w-full sm:flex sm:items-center">
                     <ul className="flex flex-1 justify-center gap-6">
-                        {navLinks.map((link) => (
+                        {user && navLinks.map((link) => (
                             <li key={link.name}>
                                 <NavLinkDesktop link={link} />
                             </li>

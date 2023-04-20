@@ -7,6 +7,8 @@ import SignupPage from './Components/SignupPage';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import ProfilePage from './Components/ProfilePage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
           <Route exact path='/create-todo' Component={CreateTodo} />
         </Routes>
         <Footer />
+        <ToastContainer/>
       </BrowserRouter>
     </div>
   );
