@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-
-// import UserContext from "../../contexts/UserContext";
-// import { toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const navLinks = [
     {
@@ -34,7 +31,6 @@ const NavLinkMobile = ({ link }) => {
                 hover:text-zinc-800"
             >
                 {link.name}
-                {/* <div className="absolute bottom-0 h-0.5 w-full scale-0 bg-white transition duration-[200ms] ease-in-out group-hover:scale-100" /> */}
             </span>
         </Link>
     );
@@ -46,7 +42,7 @@ const Navbar = () => {
 
     const logout = () => {
         localStorage.removeItem("currentUser");
-        setUser(null);
+        window.location.href = "/";
     };
 
     useEffect(() => {
@@ -84,7 +80,7 @@ const Navbar = () => {
                             <li key="Logout">
                                 <button
                                     onClick={logout}
-                                    className="text-base font-medium text-zinc-900 opacity-80 hover:opacity-100"
+                                    className="inline-flex items-center rounded-md bg-gradient-to-r from-green-500 to-emerald-600 px-4 py-1.5 text-center text-base font-medium text-white hover:bg-gradient-to-l"
                                 >
                                     Logout
                                 </button>
@@ -122,7 +118,7 @@ const Navbar = () => {
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
-                            ariaAidden="true"
+                            aria-hidden="true"
                             className="h-6 w-6"
                         >
                             <path
@@ -168,11 +164,10 @@ const Navbar = () => {
                         <li key="Logout">
                             <button
                                 onClick={logout}
-                                className="group block py-1"
+                                className="inline-flex items-center rounded-md bg-gradient-to-r from-green-500 to-emerald-600 px-4 py-1.5 text-center text-base font-medium text-white hover:bg-gradient-to-l"
                             >
                                 <span className="relative">
                                     Logout
-                                    <div className="absolute bottom-0 h-0.5 w-full scale-0 bg-white transition duration-[200ms] ease-in-out group-hover:scale-100" />
                                 </span>
                             </button>
                         </li>

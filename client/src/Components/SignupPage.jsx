@@ -30,7 +30,7 @@ async function checkSignup(username, email, password) {
       window.location.href = "/dashboard";
     }, 2250);
   } else if (res) {
-    // if email already exists then show
+    // if email already exists then show account already exists
     toast.error("Account already exists!", {
       position: toast.POSITION.TOP_RIGHT,
       autoClose: 1500,
@@ -39,6 +39,7 @@ async function checkSignup(username, email, password) {
 }
 
 const SignupPage = () => {
+  localStorage.removeItem("currentUser");
   const formSubmit = (e) => {
     e.preventDefault();
     checkSignup(

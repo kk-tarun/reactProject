@@ -1,14 +1,14 @@
 //will contain the files with the endpoints
-const express = require("express")
+const express = require("express");
 const router = express.Router();
 
 const {
-    getAllTodo,
-    postCreateTodo,
-    putUpdateTodo,
-    deleteTodo,
-    findEmail,
-} = require('../controllers/todo')
+  getAllTodo,
+  postCreateTodo,
+  putUpdateTodo,
+  deleteTodo,
+  findEmail,
+} = require("../controllers/todo");
 
 /**
  * @route GET api/todo
@@ -25,20 +25,20 @@ router.get("/:email", findEmail);
  * @description add a new todo
  * @access public
  */
-router.post("/", postCreateTodo);
+router.post("/:email", postCreateTodo);
 
 /**
  * @route PUT api/todo/:id
  * @description update todo
  * @access public
  */
-router.put("/:id", putUpdateTodo);
+router.put("/:email", putUpdateTodo);
 
 /**
  * @route DELETE api/todo/:id
  * @description delete todo
  * @access public
  */
-router.delete("/:id", deleteTodo);
+router.delete("/:email/:id", deleteTodo);
 
 module.exports = router;
