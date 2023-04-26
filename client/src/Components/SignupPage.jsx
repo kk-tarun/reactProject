@@ -26,9 +26,6 @@ async function checkSignup(username, email, password) {
       autoClose: 1500,
     });
 
-    setTimeout(() => {
-      window.location.href = "/dashboard";
-    }, 2250);
   } else if (res) {
     // if email already exists then show account already exists
     toast.error("Account already exists!", {

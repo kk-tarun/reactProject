@@ -8,6 +8,7 @@ const {
   putUpdateTodo,
   deleteTodo,
   findEmail,
+  signUp
 } = require("../controllers/todo");
 
 /**
@@ -18,7 +19,8 @@ const {
 router.get("/", getAllTodo);
 
 // router for email finding
-router.get("/:email", findEmail);
+router.get("/email", findEmail);
+
 
 /**
  * @route POST api/todo/
@@ -26,6 +28,9 @@ router.get("/:email", findEmail);
  * @access public
  */
 router.post("/:email", postCreateTodo);
+
+// route for setting up new user to database
+router.post("/", signUp);
 
 /**
  * @route PUT api/todo/:id

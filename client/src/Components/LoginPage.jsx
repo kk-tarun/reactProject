@@ -95,22 +95,6 @@ const LoginPage = () => {
               </div>
             </div>
 
-            <div className="mt-6 flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="remember"
-                  type="checkbox"
-                  className="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
-                />
-                <label
-                  htmlFor="remember"
-                  className="ml-2 block text-sm leading-5 text-gray-900"
-                >
-                  Remember me
-                </label>
-              </div>
-            </div>
-
             <div>
               <button
                 type="submit"

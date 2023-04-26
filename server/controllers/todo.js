@@ -1,7 +1,7 @@
 //files which have the methods for the endpoint to communicate with the database
 const Todo = require("../models/todo");
 
-// getAllTodo: The find() method will return all the todo in the collection. If the collection is empty then it will return a 404 error.
+// getAllTodo: The find() method will return all the todo in the collection. If the collection is empty then it will return a error.
 exports.getAllTodo = (req, res) => {
   Todo.find()
     .then((todo) => res.json(todo))
@@ -15,6 +15,18 @@ exports.postCreateTodo = (req, res) => {
   Todo.updateOne({ email: req.params.email }, { $push: { todos: req.body } })
     .then((data) => {
       res.json({ message: "Todo added successfully", data });
+    })
+    .catch((err) => {
+      res
+        .status(400)
+        .json({ message: "Failed to add todo", error: err.message });
+    });
+};
+
+exports.signUp = (req, res) => {
+  Todo.create(req.body)
+    .then((data) => {
+      res.json({ message: "User added successfully", data });
     })
     .catch((err) => {
       res

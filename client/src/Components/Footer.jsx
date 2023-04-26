@@ -103,7 +103,7 @@ const Footer = () => {
                             rel="noreferrer"
                             className="border-b-2 border-zinc-500"
                         >
-                            Tarun Kumar Kushwaha
+                        Tarun Kumar Kushwaha
                         </a>{" "}
                         {new Date().getFullYear()}
                     </p>
